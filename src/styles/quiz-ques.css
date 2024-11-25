@@ -1,0 +1,88 @@
+/* QuizQues Component CSS */
+.quiz-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-box {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.quiz-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.quiz-input,
+.options {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  resize: none;
+}
+
+.quiz-input:focus,
+.options:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.label-answer {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.options-label {
+  font-weight: bold;
+  margin-right: 5px;
+  color: #555;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.upload-quiz {
+  background-color: #28a745;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.upload-quiz:hover {
+  background-color: #218838;
+}
+
+.add-ques {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+.add-ques:hover {
+  background-color: #138496;
+}
+
+.save-ques {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.save-ques:hover {
+  background-color: #e0a800;
+}
