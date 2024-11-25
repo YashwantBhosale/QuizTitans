@@ -17,37 +17,26 @@ function App() {
     [
       {
         path: "/",
-        children: [{ path: '*', element: <Root />  }],
         element: <Root />
       },
-      // {
-      //   path: "/login",
-      //   children: [{ path: '*', element: <Login />  }],
-      //   element: <Login />
-      // },
       {
         path: "/home",
-        children: [{ path: '*', element: <Home />  }],
         element: <Home />
       },
       {
         path: "/quiz/create",
-        children: [{ path: '*', element: <QuizCreate/>  }],
         element: <QuizCreate/>
       },
       {
         path: "/quiz/view",
-        children: [{ path: '*', element: <ViewQuiz />  }],
         element: <ViewQuiz />
       },
       {
         path: "/quiz/solve",
-        children: [{ path: '*', element: <TakeQuiz />  }],
         element: <TakeQuiz />
       },
       {
         path: "/quiz/questions",
-        children: [{ path: '*', element: <QuizQues /> }],
         element: <QuizQues />
       }
     ],

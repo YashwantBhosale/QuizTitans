@@ -1,0 +1,28 @@
+{
+    "routes": [
+        {
+            "src": "/",
+            "dest": "/"
+          },
+          {
+            "src": "/home",
+            "dest": "/"
+          },
+          {
+            "src": "/quiz/create",
+            "dest": "/"
+          },
+          {
+            "src": "/quiz/view",
+            "dest": "/"
+          },
+          {
+            "src": "/quiz/solve",
+            "dest": "/"
+          },
+          {
+            "src": "/quiz/questions",
+            "dest": "/"
+          }
+    ]
+}
