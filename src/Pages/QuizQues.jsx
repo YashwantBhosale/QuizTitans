@@ -1,6 +1,9 @@
-import Select from "@mui/material/Select";
 import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+
 import { FormControl, InputLabel, MenuItem } from "@mui/material";
+import Select from "@mui/material/Select";
 import "../styles/ques-create.css";
 
 const QuizTest = () => {
@@ -55,7 +58,8 @@ const QuizTest = () => {
     );
   };
 
-  const uploadQuiz = () => {
+  const uploadQuiz = async () => {
+    // CHECK DATA VALIDITY
     for (let i = 0; i < formData.length; i++) {
       const { question, correctAnswer, wrongAnswers, type } = formData[i];
 
@@ -88,8 +92,18 @@ const QuizTest = () => {
       }
     }
 
-    setErrorMessage(""); // Clear error if all validations pass
-    console.log("Quiz data is valid:", formData);
+    try {
+      console.log(formData);
+      const response = await axios.post(
+        "http://localhost:4000/quiz/questions",
+        formData
+      );
+      console.log("Quiz uploaded successfully:", response.data);
+      setErrorMessage(""); // Clear any previous errors
+    } catch (error) {
+      console.error("Error uploading quiz:", error);
+      setErrorMessage("Failed to upload quiz. Please try again.");
+    }
   };
 
   return (
@@ -120,7 +134,7 @@ const QuizTest = () => {
                 <textarea
                   key={`wrong-answer-${index}-${i}`}
                   value={answer}
-                  placeholder={`wrong answer-${i+1}`}
+                  placeholder={`wrong answer-${i + 1}`}
                   onChange={(e) => {
                     const updatedAnswers = [...data.wrongAnswers];
                     updatedAnswers[i] = e.target.value;
@@ -196,7 +210,9 @@ const QuizTest = () => {
       </FormControl>
 
       <div className="upload-ques">
-        <button onClick={uploadQuiz}>Upload</button>
+        <button type="submit" onClick={uploadQuiz}>
+          Upload
+        </button>
       </div>
 
       {errorMessage && (

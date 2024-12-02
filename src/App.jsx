@@ -1,5 +1,6 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import Root from "./Pages/Root";
 import Home from "./Pages/Home";
 import QuizCreate from "./Pages/QuizCreate";
@@ -7,8 +8,8 @@ import ViewQuiz from "./Pages/ViewQuiz";
 import TakeQuiz from "./Pages/AttemptQuiz";
 import QuizTest from "./Pages/QuizQues";
 
-function App() {
-
+function App() 
+{
   const router = createBrowserRouter(
     [
       {
