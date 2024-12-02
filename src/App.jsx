@@ -1,17 +1,13 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./Pages/Login";
 import Root from "./Pages/Root";
 import Home from "./Pages/Home";
 import QuizCreate from "./Pages/QuizCreate";
 import ViewQuiz from "./Pages/ViewQuiz";
 import TakeQuiz from "./Pages/AttemptQuiz";
-import QuizQues from "./Pages/QuizQues";
-import { useAuth0 } from "@auth0/auth0-react";
+import QuizTest from "./Pages/QuizQues";
 
 function App() {
-
-  // const { user, isAuntheticated, logout } = useAuth0();
 
   const router = createBrowserRouter(
     [
@@ -37,7 +33,8 @@ function App() {
       },
       {
         path: "/quiz/questions",
-        element: <QuizQues />
+        // element: <QuizQues />
+        element: <QuizTest />
       }
     ],
     {

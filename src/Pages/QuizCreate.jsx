@@ -3,15 +3,14 @@ import "../styles/quiz-create.css";
 import { Link } from "react-router-dom";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 const QuizCreate = () => {
-  const [age, setAge] = React.useState("");
+  const [domain, setdomain] = React.useState("");
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    setdomain(event.target.value);
   };
 
   return (
@@ -24,12 +23,12 @@ const QuizCreate = () => {
         <textarea className="describe" required />
 
         <FormControl required sx={{ m: 1, minWidth: 120 }}>
-          <InputLabel id="demo-simple-select-required-label">Age</InputLabel>
+          <InputLabel id="demo-simple-select-required-label">Domain</InputLabel>
           <Select
             labelId="demo-simple-select-required-label"
             id="demo-simple-select-required"
-            value={age}
-            label="Age"
+            value={domain}
+            label="domain"
             onChange={handleChange}
           >
             <MenuItem value="">
@@ -47,6 +46,7 @@ const QuizCreate = () => {
         <Link to="/quiz/questions" type="submit" className="submit">
           Create Quiz
         </Link>
+
       </form>
     </div>
   );

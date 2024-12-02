@@ -1,188 +1,211 @@
-import React from "react";
-import '../styles/quiz-ques.css'
+import Select from "@mui/material/Select";
+import { useState } from "react";
+import { FormControl, InputLabel, MenuItem } from "@mui/material";
+import "../styles/ques-create.css";
 
-const QuizQues = () => {
-//   const navigator = useNavigate();
-//   const [questions, setQuestions] = useState([
-//     {
-//       id: 0,
-//       question: "",
-//       correct_opt: "",
-//       wrong_opt1: "",
-//       wrong_opt2: "",
-//       wrong_opt3: "",
-//     },
-//   ]);
+const QuizTest = () => {
+  const [selectedType, setSelectedType] = useState("");
+  const [formData, setFormData] = useState([
+    {
+      index: 0,
+      type: "mcq",
+      question: "",
+      correctAnswer: "",
+      wrongAnswers: ["", "", ""],
+    },
+  ]);
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
 
-//   const addNewQuestion = () => {
-//     const lastQues = questions[questions.length - 1];
-//     if (
-//       !lastQues.question ||
-//       !lastQues.correct_opt ||
-//       !lastQues.wrong_opt1 ||
-//       !lastQues.wrong_opt2 ||
-//       !lastQues.wrong_opt3
-//     ) {
-//       return;
-//     }
-//     setQuestions([
-//       ...questions,
-//       {
-//         id: questions.length,
-//         question: "",
-//         correct_opt: "",
-//         wrong_opt1: "",
-//         wrong_opt2: "",
-//         wrong_opt3: "",
-//       },
-//     ]);
-//   };
+  const types = [
+    { label: "MCQ", value: "mcq" },
+    { label: "Subjective", value: "long_ans" },
+    { label: "True/False", value: "true_false" },
+  ];
 
-//   const removeQuestion = (index) => {
-//     const updatedQuestions = [...questions];
-//     updatedQuestions.splice(index, 1);
-//     if (updatedQuestions.length === 0) {
-//       navigator("/create");
-//     }
-//     const changeIds = updatedQuestions.map((question, idx) => ({
-//       id: idx,
-//       ...question,
-//     }));
-//     setQuestions(changeIds);
-//   };
+  const handleTypeChange = (event) => {
+    setSelectedType(event.target.value);
+  };
 
-//   const HandleUpload = async () => {
-//     const lastQues = questions[questions.length - 1];
-//     if (
-//       !lastQues.question ||
-//       !lastQues.correct_opt ||
-//       !lastQues.wrong_opt1 ||
-//       !lastQues.wrong_opt2 ||
-//       !lastQues.wrong_opt3
-//     ) {
-//       return;
-//     }
+  const handleNewQuestion = () => {
+    if (selectedType !== "") {
+      setErrorMessage(""); // Clear error message when adding a valid question
+      const newData = {
+        index: formData.length,
+        type: selectedType,
+        question: "",
+        correctAnswer: "",
+        wrongAnswers: selectedType === "mcq" ? ["", "", ""] : [""],
+      };
+      setFormData((prev) => [...prev, newData]);
+    }
+  };
 
-//     const quizInfo = JSON.parse(localStorage.getItem("quizInfo"));
+  const handleDelQuestion = (event) => {
+    if (formData.length === 1) return; // Prevent deleting the last question
 
-//     const quizData = {
-//       ...quizInfo,
-//       questions,
-//     };
+    const quesId = parseInt(event.target.id.replace("del-", ""), 10); // Extract question ID
+    setFormData((prevData) => prevData.filter((_, index) => index !== quesId));
+  };
 
-//     // send data to server
-//     try {
-//       const response = await axios.post(
-//         "http://localhost:4000/quiz/create",
-//         quizData
-//       );
-//       console.log(response.data);
-//       navigator("/show");
-//     } catch (error) {
-//       console.error("Error details:", error);
-//       if (error.response) {
-//         console.error("Server responded with:", error.response.data);
-//         console.error("Status code:", error.response.status);
-//       } else if (error.request) {
-//         console.error("No response received:", error.request);
-//       } else {
-//         console.error("Error setting up the request:", error.message);
-//       }
-//     }
-//   };
+  const handleInputChange = (index, field, value) => {
+    setFormData((prevData) =>
+      prevData.map((item, i) =>
+        i === index ? { ...item, [field]: value } : item
+      )
+    );
+  };
+
+  const uploadQuiz = () => {
+    for (let i = 0; i < formData.length; i++) {
+      const { question, correctAnswer, wrongAnswers, type } = formData[i];
+
+      // Validation for MCQ
+      if (
+        type === "mcq" &&
+        (!question.trim() ||
+          !correctAnswer.trim() ||
+          wrongAnswers.some((ans) => !ans.trim()))
+      ) {
+        setErrorMessage(`Please fill out all fields for question ${i + 1}.`);
+        return;
+      }
+
+      // Validation for True/False
+      if (
+        type === "true_false" &&
+        (!question.trim() || !correctAnswer.trim())
+      ) {
+        setErrorMessage(`Please complete the True/False question ${i + 1}.`);
+        return;
+      }
+
+      // Validation for Subjective
+      if (type === "long_ans" && !question.trim()) {
+        setErrorMessage(
+          `Please provide a question for the subjective question ${i + 1}.`
+        );
+        return;
+      }
+    }
+
+    setErrorMessage(""); // Clear error if all validations pass
+    console.log("Quiz data is valid:", formData);
+  };
 
   return (
-    <div>
-      <div className="quiz-container">
-        <div className="quiz-box">
-          {/* {questions.map((question, index) => ( */}
-            <form className="quiz-form">
-                <button
-                  type="button"
-                  className="upload-quiz"
-                >
-                    upoad
-                </button>
-              <div>
-                <label>Question </label>
+    <div className="create-quiz-div">
+      {formData.map((data, index) => (
+        <div className="quiz-container" key={index}>
+          <textarea
+            name="question"
+            value={data.question}
+            placeholder="add new question"
+            onChange={(e) =>
+              handleInputChange(index, "question", e.target.value)
+            }
+          ></textarea>
+
+          {data.type === "mcq" && (
+            <>
+              <textarea
+                name="correct-answer"
+                placeholder="add correct answer"
+                value={data.correctAnswer}
+                onChange={(e) =>
+                  handleInputChange(index, "correctAnswer", e.target.value)
+                }
+              ></textarea>
+
+              {data.wrongAnswers.map((answer, i) => (
                 <textarea
-                  className="quiz-input ques"
-                  type="text"
-                  placeholder="Create question.."
-                  required
+                  key={`wrong-answer-${index}-${i}`}
+                  value={answer}
+                  placeholder={`wrong answer-${i+1}`}
+                  onChange={(e) => {
+                    const updatedAnswers = [...data.wrongAnswers];
+                    updatedAnswers[i] = e.target.value;
+                    handleInputChange(index, "wrongAnswers", updatedAnswers);
+                  }}
+                ></textarea>
+              ))}
+            </>
+          )}
+
+          {data.type === "long_ans" && (
+            <>
+              <textarea name="long-ans" id="long-ans"></textarea>
+            </>
+          )}
+
+          {data.type === "true_false" && (
+            <>
+              <label>
+                <input
+                  type="radio"
+                  name={`true-false-${index}`}
+                  value="true"
+                  onChange={() =>
+                    handleInputChange(index, "correctAnswer", "true")
+                  }
                 />
-              </div>
-
-              <div>
-                <label className="label-answer">Correct answer </label>
-                <br />
-
-                <label
-                  className="options-label"
-                >
-                  1
-                </label>
-                <textarea
-                  className="options"
-                  type="text"
-                  required
+                True
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name={`true-false-${index}`}
+                  value="false"
+                  onChange={() =>
+                    handleInputChange(index, "correctAnswer", "false")
+                  }
                 />
-                <br />
+                False
+              </label>
+            </>
+          )}
 
-                <label className="label-answer">Other answers </label>
-                <br />
-                <label
-                  className="options-label"
-                >
-                  2
-                </label>
-                <textarea
-                  className="options"
-                  type="text"
-                  required
-                />
-                <br />
-
-                <label
-                  className="options-label"
-                >
-                  3
-                </label>
-                <textarea
-                  className="options"
-                  type="text"
-                  required
-                />
-                <br />
-
-                <label
-                >
-                  4
-                </label>
-                <textarea
-                  className="options"
-                  type="text"
-                  required
-                />
-                <br />
-              </div>
-
-              <button
-                type="button"
-                className="add-ques"
-              >+
+          <div className="make-quiz-toolbar">
+            <div className="remove-ques">
+              <button id={`del-${index}`} onClick={handleDelQuestion}>
+                -
               </button>
-              <button
-                type="button"
-                className="save-ques"
-              >
-                save
-              </button>
-            </form>
+            </div>
+          </div>
         </div>
+      ))}
+
+      <div className="add-new-ques">
+        <button onClick={handleNewQuestion}>+</button>
       </div>
+
+      <FormControl sx={{ minWidth: 200, marginTop: 2 }}>
+        <InputLabel id="quiz-type-label">Quiz Type</InputLabel>
+        <Select
+          labelId="quiz-type-label"
+          id="quiz-type"
+          value={selectedType}
+          onChange={handleTypeChange}
+          label="Quiz Type"
+        >
+          {types.map((type) => (
+            <MenuItem key={type.value} value={type.value}>
+              {type.label}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+
+      <div className="upload-ques">
+        <button onClick={uploadQuiz}>Upload</button>
+      </div>
+
+      {errorMessage && (
+        <div className="error-message">
+          <p>{errorMessage}</p>
+        </div>
+      )}
     </div>
   );
 };
 
-export default QuizQues;
+export default QuizTest;
