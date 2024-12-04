@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useHistory } from "react";
 import "../styles/quiz-create.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-const QuizCreate = () => {
+const QuizCreate = () => 
+{
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    navigate("/quiz/questions/", {state: QuizInfo});
+  }
 
   const [domain, setdomain] = useState("");
   const [title, settitle] = useState("");
@@ -29,13 +35,6 @@ const QuizCreate = () => {
   const handleDomainChange = (event) => {
     setdomain(event.target.value);
   };
-
-  const HandleUpdate = () => {
-    if(!title.trim() || !describe.trim() ||!domain.trim()){
-      document.getElementsByClassName("err-msg").style.display = "visible";
-      return;
-    }
-  }
 
   useEffect(() => {
     SetQuizInfo({ title, describe, domain });
@@ -73,11 +72,9 @@ const QuizCreate = () => {
           </Select>
         </FormControl>
 
-        <Link onClick={HandleUpdate} to={{pathname:"/quiz/questions", state: QuizInfo} } type="submit" className="submit">
+        <button onClick={handleSubmit} type="submit" className="submit">
           Create Quiz
-        </Link>
-
-        <p style={{display: "none",color: "red"}} className="error-msg">Please fill all the boxes</p>
+        </button>
 
       </form>
     </div>

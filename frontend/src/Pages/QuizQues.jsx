@@ -1,22 +1,31 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import axios from "axios";
-
 import { FormControl, InputLabel, MenuItem } from "@mui/material";
 import Select from "@mui/material/Select";
 import "../styles/ques-create.css";
+import { useLocation } from "react-router-dom";
 
-const QuizTest = () => {
+const QuizTest = (props) => {
+  const state = useLocation();
+  const { title, describe, domain } = state.state;
+
+  const [quizData, SetquizData] = useState({
+    title,
+    describe,
+    domain,
+    questions: [
+      {
+        index: 0,
+        type: "mcq",
+        question: "",
+        correctAnswer: "",
+        wrongAnswers: ["", "", ""],
+      },
+    ],
+  });
+
   const [selectedType, setSelectedType] = useState("");
-  const [formData, setFormData] = useState([
-    {
-      index: 0,
-      type: "mcq",
-      question: "",
-      correctAnswer: "",
-      wrongAnswers: ["", "", ""],
-    },
-  ]);
+
   const [errorMessage, setErrorMessage] = useState(""); // State for error message
 
   const types = [
@@ -33,35 +42,48 @@ const QuizTest = () => {
     if (selectedType !== "") {
       setErrorMessage(""); // Clear error message when adding a valid question
       const newData = {
-        index: formData.length,
+        index: quizData.questions.length,
         type: selectedType,
         question: "",
         correctAnswer: "",
-        wrongAnswers: selectedType === "mcq" ? ["", "", ""] : [""],
+        wrongAnswers: selectedType === "mcq" ? ["", "", ""] : [],
       };
-      setFormData((prev) => [...prev, newData]);
+
+      SetquizData((prev) => ({
+        ...prev, // Spread the existing quizData object
+        questions: [...prev.questions, newData], // Append the new question to the questions array
+      }));
+    } else {
+      setErrorMessage(
+        "Please select a question type before adding a new question."
+      );
     }
   };
 
   const handleDelQuestion = (event) => {
-    if (formData.length === 1) return; // Prevent deleting the last question
+    if (quizData.questions.length === 1) return; // Prevent deleting the last question
 
     const quesId = parseInt(event.target.id.replace("del-", ""), 10); // Extract question ID
-    setFormData((prevData) => prevData.filter((_, index) => index !== quesId));
+    SetquizData((prevData) => ({
+      ...prevData,
+      questions: prevData.questions.filter((_, index) => index !== quesId),
+    }));
   };
 
   const handleInputChange = (index, field, value) => {
-    setFormData((prevData) =>
-      prevData.map((item, i) =>
+    SetquizData((prevData) => {
+      const updatedQuestions = prevData.questions.map((item, i) =>
         i === index ? { ...item, [field]: value } : item
-      )
-    );
+      );
+      return { ...prevData, questions: updatedQuestions };
+    });
   };
 
   const uploadQuiz = async () => {
     // CHECK DATA VALIDITY
-    for (let i = 0; i < formData.length; i++) {
-      const { question, correctAnswer, wrongAnswers, type } = formData[i];
+    for (let i = 0; i < quizData.questions.length; i++) {
+      const { question, correctAnswer, wrongAnswers, type } =
+        quizData.questions[i];
 
       // Validation for MCQ
       if (
@@ -93,10 +115,9 @@ const QuizTest = () => {
     }
 
     try {
-      console.log(formData);
       const response = await axios.post(
         "http://localhost:4000/quiz/questions",
-        formData
+        quizData
       );
       console.log("Quiz uploaded successfully:", response.data);
       setErrorMessage(""); // Clear any previous errors
@@ -108,7 +129,7 @@ const QuizTest = () => {
 
   return (
     <div className="create-quiz-div">
-      {formData.map((data, index) => (
+      {quizData.questions.map((data, index) => (
         <div className="quiz-container" key={index}>
           <textarea
             name="question"
@@ -147,7 +168,15 @@ const QuizTest = () => {
 
           {data.type === "long_ans" && (
             <>
-              <textarea name="long-ans" id="long-ans"></textarea>
+              <textarea 
+                name="long-ans" 
+                value={data.correctAnswer}
+                id="long-ans"
+                placeholder="Enter your long answer"
+                onChange={(e) => {
+                  handleInputChange(index, "correctAnswer", e.target.value);
+                }}
+              textarea />
             </>
           )}
 
