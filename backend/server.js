@@ -3,6 +3,7 @@ import 'dotenv/config'
 import  mongoose from "mongoose"
 import cors from "cors"
 import QuizSchema from "./models/quizSchema.js"
+import QuizData from "./models/quizSchema.js"
 
 const PORT = process.env.PORT;
 const app = express();
@@ -29,8 +30,10 @@ app.get("/", (req, res) => {
 });
 
 app.post("/quiz/questions", (req, res) => {
-    console.log(req.body);
-    res.send(req.body);
+    const quizz = new QuizData(req.body);
+    quizz.save().then(() => {
+        res.status(201).json({ message: "Quiz Saved Successfully."})
+    }).catch((err) => res.status(500).json( {error: err.message} ));
 });
 
 app.listen(PORT, () => {
