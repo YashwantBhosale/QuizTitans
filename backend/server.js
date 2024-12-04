@@ -2,6 +2,7 @@ import express from "express"
 import 'dotenv/config'
 import  mongoose from "mongoose"
 import cors from "cors"
+import QuizSchema from "./models/quizSchema.js"
 
 const PORT = process.env.PORT;
 const app = express();
@@ -20,26 +21,8 @@ const uri = process.env.MONGO_URI;
 mongoose
     .connect(uri)
     .then(() => console.log("MongoDB connected!!"))
-    .catch(err => console.log("Error connecting", err))
+    .catch(err => console.log("Error connecting", err));
 
-// MONGOOSE SCHEMA
-const QuizSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    domain: {
-        type: String,
-        required: true
-    }
-});
-
-// CREATE A MODEL
-const QuizData = mongoose.model('Quizz', QuizSchema);
 
 app.get("/", (req, res) => {
     res.send("hello");
@@ -48,7 +31,7 @@ app.get("/", (req, res) => {
 app.post("/quiz/questions", (req, res) => {
     console.log(req.body);
     res.send(req.body);
-})
+});
 
 app.listen(PORT, () => {
     console.log("Server is listening");
