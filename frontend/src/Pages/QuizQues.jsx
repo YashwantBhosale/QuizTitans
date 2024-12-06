@@ -116,7 +116,11 @@ const QuizTest = (props) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/quiz/questions",
+        // for localhost
+        // "http://localhost:4000/quiz/questions",
+        
+        // for production
+        "https://quiz-titans.vercel.app/",
         quizData
       );
       console.log("Quiz uploaded successfully:", response.data);
