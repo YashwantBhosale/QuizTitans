@@ -5,7 +5,7 @@ import cors from "cors"
 import QuizSchema from "./models/quizSchema.js"
 import QuizData from "./models/quizSchema.js"
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 const app = express();
 
 // MIDDLEWARE
