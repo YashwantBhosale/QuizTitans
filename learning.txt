@@ -7,3 +7,5 @@ that's why
     & → %26
     = → %3D      
 Use an online URL encoder or manually replace the special characters with their encoded values:
+
+BackendURI: https://quiz-titans.vercel.app/
