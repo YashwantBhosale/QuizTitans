@@ -1,41 +1,32 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import '../styles/view-quiz.css';
 
-const ViewQuiz = () => {
-  // const navigate = useNavigate();
-  // const [quizData, setQuizData] = useState([]);
+const ViewQuiz =() => {
 
-  // const fetchData = async () => {
-  //     try {
-  //         const response = await axios.get('http://localhost:4000/quiz/show');
-  //         setQuizData(response.data);
-  //     } catch (error) {
-  //         console.error('Error fetching quiz data:', error);
-  //     }
-  // };
+  const [storeData, SetStoreData] = useState([]);
 
-  // useEffect(() => {
-  //     fetchData();
-  // }, []);
-
-  // const takeQuiz = async (quizId) => {
-  //     try {
-  //         const MyQuiz = await axios.get(`http://localhost:4000/quiz/${quizId}`);
-  //         localStorage.setItem('MyQuiz', JSON.stringify(MyQuiz.data));
-  //         navigate('/attempt-quiz');
-  //     } catch (error) {
-  //         console.log("Error fetching data", error);
-  //     }
-  // };
+  useEffect   (() => {
+    axios.get("http://localhost:4000/quiz/all")
+    .then((response) => {
+      console.log(response.data);
+      SetStoreData(response.data);
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }, []);
 
   return (
-    <div className="view_container">
-      <ul className="view_list">
-        <li key={index} className="view_box">
+    <div className="quiz-container">
+      {storeData.map((quiz, index) => (
+        <div className="quiz-box">
           <h2>{quiz.title}</h2>
-          <p>{quiz.description}</p>
-          <button className="take-quiz-btn">Take Quiz</button>
-        </li>
-      </ul>
+          <p>{quiz.describe}</p>
+          <h4>{quiz.domain}</h4>
+          <Link to={`quiz/take/${quiz.index}`} >Take Quiz</Link>
+        </div>
+      ))}
     </div>
   );
 };

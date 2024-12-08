@@ -118,9 +118,8 @@ const QuizTest = (props) => {
       const response = await axios.post(
         // for localhost
         "http://localhost:4000/quiz/questions",
-
         // for production
-        // here it is not working cause hobby plan only gives max 5sec for API requests
+        // it is not working cause hobby plan only gives max 5sec for API requests ( atlas )
         // "https://quiz-titans.vercel.app/",
         quizData
       );

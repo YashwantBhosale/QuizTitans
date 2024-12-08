@@ -5,8 +5,8 @@ import Root from "./Pages/Root";
 import Home from "./Pages/Home";
 import QuizCreate from "./Pages/QuizCreate";
 import ViewQuiz from "./Pages/ViewQuiz";
-import TakeQuiz from "./Pages/AttemptQuiz";
 import QuizTest from "./Pages/QuizQues";
+import TakeQuiz from "./Pages/TakeQuiz";
 
 function App() 
 {
@@ -29,13 +29,12 @@ function App()
         element: <ViewQuiz />
       },
       {
-        path: "/quiz/solve",
-        element: <TakeQuiz />
+        path: "/quiz/questions",
+        element: <QuizTest />
       },
       {
-        path: "/quiz/questions",
-        // element: <QuizQues />
-        element: <QuizTest />
+        path: "/quiz/take/:id",
+        element: <TakeQuiz />
       }
     ],
     {

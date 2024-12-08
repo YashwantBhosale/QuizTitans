@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.quiz-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+}
+
+.quiz-box
+{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    flex-direction: column;
+    min-width: 200px;
+    width: 350px;
+    min-height: fit-content;
+    height: 250px;
+    gap: 1rem;
+    flex-wrap: wrap;
+    color: rgb(150, 146, 146);
+    background-color: #312e2e;
+}

@@ -9,7 +9,7 @@ const Home = () => {
       <Link to="/home">Home</Link>
       <Link to="/quiz/create">CreateQuiz</Link>
       <Link to="/quiz/view">View Quiz</Link>
-      <Link to="/quiz/solve">Solve Quiz</Link>
+      <Link to="/quiz/take/:id">Solve Quiz</Link>
       <button
           onClick={() =>
             logout({ logoutParams: { returnTo: window.location.origin } })
@@ -19,6 +19,6 @@ const Home = () => {
         </button>
     </div>
   )
-}
+};
 
 export default Home

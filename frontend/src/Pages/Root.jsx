@@ -13,11 +13,7 @@ const Root = () => {
         <button onClick={() => loginWithRedirect()}>Login</button>
       ) : (
         <button></button>
-      )}
-      {/* <Link to="/home">Home</Link>
-      <Link to="/quiz/create">CreateQuiz</Link>
-      <Link to="/quiz/view">View Quiz</Link>
-      <Link to="/quiz/solve">Solve Quiz</Link> */}
+      )};
     </div>
   );
 };
