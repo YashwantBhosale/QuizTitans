@@ -13,7 +13,7 @@ const Root = () => {
         <button onClick={() => loginWithRedirect()}>Login</button>
       ) : (
         <button></button>
-      )};
+      )}
     </div>
   );
 };
