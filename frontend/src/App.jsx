@@ -33,7 +33,7 @@ function App()
         element: <QuizTest />
       },
       {
-        path: "/quiz/take/:id",
+        path: "/quiz/take/:quizId",
         element: <TakeQuiz />
       }
     ],

@@ -45,6 +45,17 @@ app.get("/quiz/all", async (req, res) => {
     });
 });
 
+app.get(`/quiz/:quizId`, async (req, res) => {
+  const { quizId } = req.params;  
+  QuizData.findById(quizId)
+    .then((quizz) => {
+      res.status(200).json(quizz);
+    })
+    .catch((err) => {
+      res.status(500).json({message: err.message})
+    })
+});
+
 app.listen(PORT, () => {
   console.log("Server is listening");
 });

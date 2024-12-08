@@ -25,5 +25,13 @@
     gap: 1rem;
     flex-wrap: wrap;
     color: rgb(150, 146, 146);
-    background-color: #312e2e;
+    background-color: #5c615b;
+}
+    
+#take-quiz-btn
+{
+    background-color: rgb(30, 30, 250);
+    padding: 1rem 1rem;
+    font-weight: bold;
+    color: aliceblue;
 }
