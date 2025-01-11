@@ -8,7 +8,7 @@ const ViewQuiz =() => {
   const [storeData, SetStoreData] = useState([]);
 
   useEffect   (() => {
-    axios.get("https://quiz-titans.vercel.app/quiz/all")
+    axios.get("http://localhost:4000/quiz/all")
     .then((response) => {
       SetStoreData(response.data);
     })

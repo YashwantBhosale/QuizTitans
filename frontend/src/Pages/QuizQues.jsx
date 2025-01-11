@@ -117,11 +117,11 @@ const QuizTest = (props) => {
     try {
       const response = await axios.post(
         // for localhost
-        // "http://localhost:4000/quiz/questions",
+        "http://localhost:4000/quiz/questions",
         // for production
         // it is not working cause hobby plan only gives max 5sec for API requests ( atlas )
         // it is working wrong uri
-        "https://quiz-titans.vercel.app/quiz/questions",
+        // "https://quiz-titans.vercel.app/quiz/questions",
         quizData
       );
       console.log("Quiz uploaded successfully:", response.data);
