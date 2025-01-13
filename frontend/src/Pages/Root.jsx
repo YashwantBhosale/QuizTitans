@@ -1,5 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import ViewQuiz from "./ViewQuiz";
+import '../styles/root.css'
 
 const Root = () => {
   const { loginWithRedirect } = useAuth0();
@@ -7,13 +9,22 @@ const Root = () => {
   console.log(user);
 
   return (
-    <div>
-      This is root.
-      {!isAuntheticated ? (
-        <button onClick={() => loginWithRedirect()}>Login</button>
-      ) : (
-        <button></button>
-      )}
+
+    <div className="main-cont">
+
+      <div className="log-in">
+        This is root.
+        {!isAuntheticated ? (
+          <button className="log-in-btn"  onClick={() => loginWithRedirect()}>Login</button>
+        ) : (
+          <>
+
+          </>
+        )}
+      </div>
+
+      <ViewQuiz />
+
     </div>
   );
 };
