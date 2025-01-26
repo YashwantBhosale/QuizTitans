@@ -1,33 +1,13 @@
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
-
-
-import { Box, Drawer, Typography, IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import HomeIcon from "@mui/icons-material/Home";
-import AddIcon from "@mui/icons-material/Add";
-import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { Button } from "@mui/material";
-import "../styles/home.css";
+import "../styles/home.module.css";
 
 import { useNavigate } from "react-router-dom";
 
 
 const Home = () => {
   const { logout } = useAuth0();
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const navigate = useNavigate();
-
-  const isClose = (open) => (event) => {
-    if (event.type === "keydown") {
-      return;
-    }
-    setIsOpen(open);
-  };
 
   return (
     <>

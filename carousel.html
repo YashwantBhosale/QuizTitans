@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .carousel-div {
+            overflow: hidden;
+            width: 90%;
+        }
+        .carousel-div * {
+            box-sizing: border-box;
+        }
+        .carousel-photo {
+            opacity: 0;
+            position: absolute;
+            top:0;
+            width: 100%;
+            margin: auto;
+            padding: 1rem 4rem;
+            z-index: 100;
+            transition: transform .5s, opacity .5s, z-index .5s;
+        }
+        .carousel-photo.initial,
+        .carousel-photo.active {
+            opacity: 1;
+            position: relative;
+            z-index: 900;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="carousel-div">
+        <div class="carousel">
+
+            <img class="carousel-photo initial" src="frontend/src/assets/main-bg-img.jpg">
+            <img class="carousel-photo" src="frontend/src/assets/main-bg-img.jpg">
+            <img class="carousel-photo" src="frontend/src/assets/main-bg-img.jpg">
+            <img class="carousel-photo" src="frontend/src/assets/main-bg-img.jpg">
+            <img class="carousel-photo" src="frontend/src/assets/main-bg-img.jpg">
+            <img class="carousel-photo" src="frontend/src/assets/main-bg-img.jpg">
+
+            <div class="left"></div>    
+            <div class="right"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.heroes{
+    color: white;
+    padding: 10rem;
+    background: url('../assets/hero.jpg'); 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    border: 5px solid black;
+}
+.srh_bar{
+    width: 150px;
+    height: 2.5rem;
+}

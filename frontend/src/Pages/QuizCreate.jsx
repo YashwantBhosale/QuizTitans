@@ -68,7 +68,7 @@ const QuizCreate = () =>
             <MenuItem value='Cooking'>Cooking</MenuItem>
             <MenuItem value='Anime'>Anime</MenuItem>
             <MenuItem value='Entertainment'>Entertainment</MenuItem>
-            <MenuItem value='Cooking'>Cooking</MenuItem>
+            <MenuItem value='Cooking'>Sports</MenuItem>
           </Select>
         </FormControl>
 

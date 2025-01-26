@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import ViewQuiz from "./ViewQuiz";
-import '../styles/root.css'
+import styles from '../styles/root.module.css';
+import ShowQuiz from "./ShowQuiz";
 
 const Root = () => {
   const { loginWithRedirect } = useAuth0();
@@ -10,20 +10,28 @@ const Root = () => {
 
   return (
 
-    <div className="main-cont">
+    <div className={styles.main}>
 
-      <div className="log-in">
-        This is root.
+      <div className={styles.heroes}>
+        <div className={styles.search_box}>
+          <input className={styles.srh_bar} type="search" />
+        </div>
         {!isAuntheticated ? (
-          <button className="log-in-btn"  onClick={() => loginWithRedirect()}>Login</button>
+          <>
+            <p onClick={() => loginWithRedirect()} >Create Quiz</p>
+            <p onClick={() => loginWithRedirect()} >Profile</p>
+            <button className={styles.log}  onClick={() => loginWithRedirect()}>Login</button>
+          </>
         ) : (
           <>
-
+            <p>Create Quiz</p>
+            <p>Profile</p>
+            <button >Logout</button>
           </>
         )}
       </div>
 
-      <ViewQuiz />
+      <ShowQuiz />
 
     </div>
   );

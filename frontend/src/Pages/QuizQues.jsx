@@ -135,6 +135,7 @@ const QuizTest = (props) => {
   return (
     <div className="create-quiz-div">
       {quizData.questions.map((data, index) => (
+        
         <div className="quiz-container" key={index}>
           <textarea
             name="question"
