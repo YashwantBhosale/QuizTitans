@@ -2,12 +2,12 @@ import { useState } from "react";
 import axios from "axios";
 import { FormControl, InputLabel, MenuItem } from "@mui/material";
 import Select from "@mui/material/Select";
-import "../styles/ques-create.css";
 import { useLocation } from "react-router-dom";
+import styles from "../styles/quiz-ques-maker.module.css";
 
 const QuizTest = (props) => {
-  const state = useLocation();
-  const { title, describe, domain } = state.state;
+  const loc = useLocation();
+  const { title, describe, domain } = loc.state;
 
   const [quizData, SetquizData] = useState({
     title,
@@ -50,8 +50,8 @@ const QuizTest = (props) => {
       };
 
       SetquizData((prev) => ({
-        ...prev, // Spread the existing quizData object
-        questions: [...prev.questions, newData], // Append the new question to the questions array
+        ...prev, 
+        questions: [...prev.questions, newData], 
       }));
     } else {
       setErrorMessage(
@@ -61,9 +61,9 @@ const QuizTest = (props) => {
   };
 
   const handleDelQuestion = (event) => {
-    if (quizData.questions.length === 1) return; // Prevent deleting the last question
+    if (quizData.questions.length === 1) return;
 
-    const quesId = parseInt(event.target.id.replace("del-", ""), 10); // Extract question ID
+    const quesId = parseInt(event.target.id.replace("del-", ""), 10);
     SetquizData((prevData) => ({
       ...prevData,
       questions: prevData.questions.filter((_, index) => index !== quesId),

@@ -1,0 +1,121 @@
+.create_quiz_div {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+  background-image: linear-gradient(
+    to top,
+    #505285 0%,
+    #585e92 12%,
+    #65689f 25%,
+    #7474b0 37%,
+    #7e7ebb 50%,
+    #8389c7 62%,
+    #9795d4 75%,
+    #a2a1dc 87%,
+    #b5aee4 100%
+  );
+  border-radius: 20px;
+}
+.header_section {
+  background-color: #7df0ff;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #2d2e53;
+  font-size: 1.4rem;
+}
+.quiz_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem 2rem;
+}
+
+.quiz_container textarea {
+  width: 100%;
+  resize: vertical;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  min-height: 50px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.make_quiz_toolbar {
+  min-width: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.create_quiz_div {
+  color: black;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quiz_ques_type {
+  background: #757474;
+}
+
+.remove_ques, .add_ques{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 40px;
+  border-radius: 10px;  
+  background-color: #df2911;
+  color: #fff;
+}
+.remove_ques > button, .add_ques > button {
+  width: 100%;
+  border-style: none;
+  font-size: 4rem;
+  background-color: transparent;
+  cursor: pointer;
+  color: white;
+}
+.add_ques {
+  background-color: #0fb300;
+  color: #fff;
+  font-size: 3.5rem;
+  padding: 1rem 0rem;
+}
+
+.add_ques:hover {
+  background-color: #69ff43;
+}
+
+.upload_quiz {
+  margin: 1rem 0rem;
+  padding: 0.4rem 0.6rem;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 15px;
+  text-align: center; 
+}
+
+.upload_quiz > button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.6rem;
+}
+
+.upload_quiz:hover {
+  background-color: #218838;
+  color: white;
+}
+
