@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useHistory } from "react";
-import "../styles/quiz-create.css";
+import styles from "../styles/quiz-create.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-const QuizCreate = () => 
-{
+const QuizCreate = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    navigate("/quiz/questions/", {state: QuizInfo});
-  }
+    navigate("/quiz/questions/", { state: QuizInfo });
+  };
 
   const [domain, setdomain] = useState("");
   const [title, settitle] = useState("");
@@ -24,11 +23,11 @@ const QuizCreate = () =>
     domain: "",
   });
 
-  const handleTitleChange = (event) =>{
+  const handleTitleChange = (event) => {
     settitle(event.target.value);
   };
 
-  const handleDescribeChange = (event) =>{
+  const handleDescribeChange = (event) => {
     setdescribe(event.target.value);
   };
 
@@ -41,17 +40,19 @@ const QuizCreate = () =>
   }, [title, describe, domain]);
 
   return (
-    <div className="create-quiz-box">
-
-      <form className="create-quiz-form">
-
+    <div className={styles.create_quiz_main}>
+      <form className={styles.quiz_create_form}>
         <label>Title</label>
         <textarea className="title" required onChange={handleTitleChange} />
 
         <label>Description</label>
-        <textarea className="describe" required onChange={handleDescribeChange} />
+        <textarea
+          className="describe"
+          required
+          onChange={handleDescribeChange}
+        />
 
-        <FormControl sx={{ m: 1, minWidth: 120 }} required >
+        <FormControl sx={{ m: 1, minWidth: 120 }} required>
           <InputLabel id="demo-simple-select-required-label">Domain</InputLabel>
           <Select
             labelId="demo-simple-select-required-label"
@@ -63,16 +64,16 @@ const QuizCreate = () =>
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value='Science'>Science</MenuItem>
-            <MenuItem value='Coding'>Coding</MenuItem>
-            <MenuItem value='Cooking'>Cooking</MenuItem>
-            <MenuItem value='Anime'>Anime</MenuItem>
-            <MenuItem value='Entertainment'>Entertainment</MenuItem>
-            <MenuItem value='Cooking'>Sports</MenuItem>
+            <MenuItem value="Science">Science</MenuItem>
+            <MenuItem value="Coding">Coding</MenuItem>
+            <MenuItem value="Cooking">Cooking</MenuItem>
+            <MenuItem value="Anime">Anime</MenuItem>
+            <MenuItem value="Entertainment">Entertainment</MenuItem>
+            <MenuItem value="Cooking">Sports</MenuItem>
           </Select>
         </FormControl>
 
-        <button onClick={handleSubmit} type="submit" className="submit">
+        <button onClick={handleSubmit} type="submit" className={styles.submit}>
           Create Quiz
         </button>
 
