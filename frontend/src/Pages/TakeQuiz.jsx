@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Form, Link, useParams } from "react-router-dom";
-import "../styles/take-quiz.css";
+import styles from "../styles/take-quiz.module.css";
 
 const TakeQuiz = () => {
   const [options, SetOptions] = useState([]);
@@ -12,7 +12,7 @@ const TakeQuiz = () => {
     title: "",
     describe: "",
     domain: "",
-    questions: [], // Initialize questions as an empty array
+    questions: [],
   });
 
   const { quizId } = useParams();
@@ -36,7 +36,7 @@ const TakeQuiz = () => {
         }
       });
     }
-  }, [Ques]); // run when Ques is updated
+  }, [Ques]);
 
   const ShuffleOptions = (quiz) => {
     const combinedOpts = quiz.wrongAnswers.concat(quiz.correctAnswer);

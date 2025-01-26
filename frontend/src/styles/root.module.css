@@ -1,19 +1,71 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.heroes{
-    color: white;
-    padding: 10rem;
-    background: url('../assets/hero.jpg'); 
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 
-    border: 5px solid black;
+.banner {
+  width: 100%;
+  height: 600px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
 }
-.srh_bar{
-    width: 150px;
-    height: 2.5rem;
+
+.banner .slider {
+  position: absolute;
+  width: 200px;
+  height: 250px;
+  top: 10%;
+  left: calc(50% - 100px);
+  transform-style: preserve-3d;
+  transform: perspective(100px);
+  animation: autoRun 20s linear infinite;
+}
+
+@keyframes autoRun {
+  from {
+    transform: perspective(900px) rotateX(3deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(900px) rotateX(3deg) rotateY(360deg);
+  }
+}
+
+.banner .slider .item {
+  position: absolute;
+  inset: 0 0 0 0;
+  transform: rotateY(
+      calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+    )
+    translateZ(450px);
+}
+
+.web_title {
+  animation: none;
+  transition: none;
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #39d7ff,
+      0 0 40px #1adbfd, 0 0 50px #4da8f3, 0 0 60px #0049e6, 0 0 70px #3ab0ff;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #55a5ff, 0 0 40px #73ccff,
+      0 0 50px #008aca, 0 0 60px #2fa0ec, 0 0 70px #0094d8, 0 0 80px #1d009e;
+  }
+}
+
+.banner .slider .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2rem;
 }

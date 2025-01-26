@@ -1,11 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import Root from "./Pages/Root";
 import Home from "./Pages/Home";
 import QuizCreate from "./Pages/QuizCreate";
 import QuizTest from "./Pages/QuizQues";
 import TakeQuiz from "./Pages/TakeQuiz";
 import ShowQuiz from "./Pages/ShowQuiz";
+import "./app.css";
 
 function App() 
 {
