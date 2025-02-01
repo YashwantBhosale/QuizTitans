@@ -92,11 +92,9 @@
   font-size: 3.5rem;
   padding: 1rem 0rem;
 }
-
 .add_ques:hover {
   background-color: #69ff43;
 }
-
 .upload_quiz {
   margin: 1rem 0rem;
   padding: 0.4rem 0.6rem;
@@ -105,7 +103,6 @@
   border-radius: 15px;
   text-align: center; 
 }
-
 .upload_quiz > button {
   background-color: transparent;
   border: none;

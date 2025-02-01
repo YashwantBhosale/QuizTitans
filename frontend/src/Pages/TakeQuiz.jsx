@@ -1,12 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Form, Link, useParams } from "react-router-dom";
+import { Form, Link, useNavigate, useParams } from "react-router-dom";
 import styles from "../styles/take-quiz.module.css";
 
 const TakeQuiz = () => {
   const [options, SetOptions] = useState([]);
-
-  const [isSubmitted, SetSubmitted] = useState(false);
 
   const [Ques, SetQues] = useState({
     title: "",
@@ -44,6 +42,8 @@ const TakeQuiz = () => {
     SetOptions(combinedOpts);
   };
 
+  const nav = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent page reload
 
@@ -51,33 +51,37 @@ const TakeQuiz = () => {
 
     const formDataObject = {};
     quizData.forEach((value, key) => {
-      console.log(`${key}: ${value}`); // Log each key-value pair
+      console.log(`${key}: ${value}`); 
       formDataObject[key] = value;
     });
 
-    SetSubmitted(true);
+    nav("/quiz/score", {state:[formDataObject, Ques] });
+
   };
 
   return (
-    <>
-      {!isSubmitted && (
-        <Form className="quiz-container" onSubmit={handleSubmit}>
-          <div className="quiz-header">
-            <h2>{Ques.title}</h2>
-            <p>{Ques.describe}</p>
-            <p>{Ques.domain}</p>
+    <div className={styles.main_container}>
+
+        <Form className={styles.quiz_container} onSubmit={handleSubmit}>
+
+          <div className={styles.quiz_header}>
+            <h2 className={styles.title}>{Ques.title}</h2>
+            <p className={styles.describe}>{Ques.describe}</p>
+            <p className={styles.domain}>{Ques.domain}</p>
           </div>
 
-          <div className="ques-container">
+          <div className={styles.ques_container}>
+
             {Ques.questions.map((quiz, index) => (
-              <div className="quiz-ques" key={index}>
+
+              <div className={styles.quiz_ques} key={index}>
                 <h3>{quiz.question}</h3>
 
                 {quiz.type === "mcq" && (
-                  <div className="opt-box">
+                  <div className={styles.opt_box}>
+
                     {options.map((opt, optIndx) => (
-                      <div key={optIndx} className="option">
-                        {/* Use name attribute to select only 1 radio btn */}
+                      <div key={optIndx} className={styles.option}>
                         <input
                           type="radio"
                           name={`mcq-opt${index}`}
@@ -90,8 +94,9 @@ const TakeQuiz = () => {
                 )}
 
                 {quiz.type === "true_false" && (
-                  <div className="opt-box">
-                    <div className="option">
+                  <div className={styles.opt_box}>
+                    
+                    <div className={styles.option}>
                       <input
                         type="radio"
                         name={`bool-opt${index}`}
@@ -109,7 +114,7 @@ const TakeQuiz = () => {
                 )}
 
                 {quiz.type === "subjective" && (
-                  <div className="answer-box">
+                  <div className={styles.answer_box}>
                     <textarea
                       name={`subjective-opt${index}`}
                       className={`answer-area${index}`}
@@ -118,25 +123,18 @@ const TakeQuiz = () => {
                     ></textarea>
                   </div>
                 )}
+
               </div>
             ))}
 
-            <button type="submit" className="submit">
+            <button type="submit" className={styles.submit}>
               Submit
             </button>
+
           </div>
         </Form>
-      )}
 
-      { isSubmitted && (
-        <>
-        <h1>Quiz Saved Successfully</h1>
-        <Link to={"/home"} >Home</Link>
-        </>
-
-      )}
-
-    </>
+    </div>
   );
 };
 

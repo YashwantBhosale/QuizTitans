@@ -6,6 +6,7 @@ import QuizMaker from "./Pages/QuizMaker";
 import TakeQuiz from "./Pages/TakeQuiz";
 import ShowQuiz from "./Pages/ShowQuiz";
 import "./app.css";
+import ViewScore from "./Pages/ViewScore";
 
 function App() 
 {
@@ -34,6 +35,10 @@ function App()
       {
         path: "/quiz/take/:quizId",
         element: <TakeQuiz />
+      },
+      {
+        path: "/quiz/score",
+        element: <ViewScore />
       }
     ],
     {

@@ -48,7 +48,7 @@ const Root = () => {
         </div>
       </div>
 
-      <div className={styles.heroes}>
+      <div className={styles.nav}>
         
         {!isAuntheticated ? (
           <>

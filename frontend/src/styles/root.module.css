@@ -69,3 +69,9 @@
   object-fit: cover;
   border-radius: 2rem;
 }
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
