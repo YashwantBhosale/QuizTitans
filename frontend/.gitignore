@@ -24,7 +24,6 @@ dist-ssr
 *.sw?
 
 # extra
-learning.txt
 carousel.html
 .gitignore
 mongostring
