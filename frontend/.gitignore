@@ -26,3 +26,6 @@ dist-ssr
 # extra
 learning.txt
 carousel.html
+.gitignore
+mongostring
+vercel.json
