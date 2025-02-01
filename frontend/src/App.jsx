@@ -18,7 +18,7 @@ function App()
       },
       {
         path: "/home",
-        element: <Home />
+        element: <Root />
       },
       {
         path: "/quiz/create",

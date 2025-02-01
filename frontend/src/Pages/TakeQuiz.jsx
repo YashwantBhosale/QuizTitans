@@ -4,7 +4,6 @@ import { Form, Link, useNavigate, useParams } from "react-router-dom";
 import styles from "../styles/take-quiz.module.css";
 
 const TakeQuiz = () => {
-  const [options, SetOptions] = useState([]);
 
   const [Ques, SetQues] = useState({
     title: "",
@@ -26,20 +25,10 @@ const TakeQuiz = () => {
       });
   }, []);
 
-  useEffect(() => {
-    if (Ques.questions.length > 0) {
-      Ques.questions.forEach((ques) => {
-        if (ques.type == "mcq") {
-          ShuffleOptions(ques);
-        }
-      });
-    }
-  }, [Ques]);
-
   const ShuffleOptions = (quiz) => {
     const combinedOpts = quiz.wrongAnswers.concat(quiz.correctAnswer);
     combinedOpts.sort(() => Math.random() - 0.5);
-    SetOptions(combinedOpts);
+    return combinedOpts;
   };
 
   const nav = useNavigate();
@@ -79,8 +68,7 @@ const TakeQuiz = () => {
 
                 {quiz.type === "mcq" && (
                   <div className={styles.opt_box}>
-
-                    {options.map((opt, optIndx) => (
+                      {ShuffleOptions(quiz).map((opt, optIndx) => (
                       <div key={optIndx} className={styles.option}>
                         <input
                           type="radio"

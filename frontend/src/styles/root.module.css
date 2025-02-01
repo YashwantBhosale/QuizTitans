@@ -14,9 +14,9 @@
 
 .banner .slider {
   position: absolute;
-  width: 200px;
-  height: 250px;
-  top: 10%;
+  width: 160px;
+  height: 210px;
+  top: 20%;
   left: calc(50% - 100px);
   transform-style: preserve-3d;
   transform: perspective(100px);
@@ -71,7 +71,17 @@
 }
 .nav {
   display: flex;
-  justify-content: center;
+  justify-content:space-around;
   align-items: center;
   color: white;
+  margin: 4rem;
+}
+.nav button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  width: fit-content;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

@@ -65,8 +65,8 @@ const QuizCreate = () => {
               <em>None</em>
             </MenuItem>
             <MenuItem value="Science">Science</MenuItem>
-            <MenuItem value="Coding">Coding</MenuItem>
-            <MenuItem value="Cooking">Cooking</MenuItem>
+            <MenuItem value="Computer Science">Coding</MenuItem>
+            <MenuItem value="GK">GK</MenuItem>
             <MenuItem value="Anime">Anime</MenuItem>
             <MenuItem value="Entertainment">Entertainment</MenuItem>
             <MenuItem value="Cooking">Sports</MenuItem>

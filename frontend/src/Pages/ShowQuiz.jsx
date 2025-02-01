@@ -11,11 +11,11 @@ import "swiper/css/pagination";
 const ShowQuiz = () => {
   const [QuizData, SetQuizData] = useState([]);
   const DomainData = [
-    "Coding",
+    "Computer Science",
     "Science",
     "Anime",
     "Cooking",
-    "Personal Knowledge",
+    "GK",
   ];
   const API = "http://localhost:4000/quiz/all";
 
@@ -47,7 +47,8 @@ const ShowQuiz = () => {
             pagination={{ clickable: true }}
             breakpoints={{
               768: { slidesPerView: 2 },
-              1024: { slidesPerView: 4 },
+              1024: { slidesPerView: 3 },
+              1455: {slidesPerView: 4}
             }}
             className={styles.swiper_container}
           >

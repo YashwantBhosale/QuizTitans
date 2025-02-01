@@ -8,15 +8,33 @@ import hero_img3 from "../assets/hero_img3.jpeg";
 import hero_img4 from "../assets/hero_img4.jpeg";
 import hero_img5 from "../assets/hero_img5.jpeg";
 import hero_img6 from "../assets/hero_img6.jpeg";
+import { Link } from "react-router-dom";
 
 const Root = () => {
   const { loginWithRedirect } = useAuth0();
-  const { user, isAuntheticated } = useAuth0();
+  const { user, logout } = useAuth0();
   console.log(user);
 
   return (
-
     <div className={styles.main}>
+
+      <div className={styles.nav}>
+        {user === undefined ? (
+          <>
+            <button onClick={() => loginWithRedirect()}>Create Quiz</button>
+            <button onClick={() => loginWithRedirect()}>Take Quiz</button>
+            <button className={styles.log} onClick={() => loginWithRedirect()}>
+              Login
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/quiz/create">Create Quiz</Link>
+            <Link to="/profile">Profile</Link>
+            <button onClick={() => logout()}>Log out</button>
+          </>
+        )}
+      </div>  
 
       <div className={styles.banner}>
         <h1 className={styles.web_title}>QuizTitans</h1>
@@ -48,25 +66,7 @@ const Root = () => {
         </div>
       </div>
 
-      <div className={styles.nav}>
-        
-        {!isAuntheticated ? (
-          <>
-            <p onClick={() => loginWithRedirect()} >Create Quiz</p>
-            <p onClick={() => loginWithRedirect()} >Profile</p>
-            <button className={styles.log}  onClick={() => loginWithRedirect()}>Login</button>
-          </>
-        ) : (
-          <>
-            <p>Create Quiz</p>
-            <p>Profile</p>
-            <button >Logout</button>
-          </>
-        )}
-      </div>
-
       <ShowQuiz />
-
     </div>
   );
 };
