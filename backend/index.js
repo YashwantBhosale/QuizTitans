@@ -21,7 +21,7 @@ mongoose
   .catch((err) => console.log("Error connecting", err));
 
 app.get("/", (req, res) => {
-  res.send("hello");
+  res.send("hello QuizApp");
 });
 
 app.post("/quiz/questions", (req, res) => {
