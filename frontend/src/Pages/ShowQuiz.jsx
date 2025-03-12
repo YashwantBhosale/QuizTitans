@@ -30,7 +30,7 @@ const ShowQuiz = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [API]);
 
   return (
     <div className={styles.view_quiz_main}>
