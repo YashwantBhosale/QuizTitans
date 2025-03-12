@@ -56,10 +56,6 @@ app.get(`/quiz/:quizId`, async (req, res) => {
     })
 });
 
-// app.get('/quiz/score', async (req, res) => {
-//   console.log(req.body);
-// })
-
 app.listen(PORT, () => {
   console.log("Server is listening");
 });

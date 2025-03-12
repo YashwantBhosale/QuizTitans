@@ -16,7 +16,7 @@ const TakeQuiz = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/quiz/${quizId}`)
+      .get(`${import.meta.env.VITE_REACT_SERVER_PORT}/quiz/${quizId}`)
       .then((response) => {
         SetQues(response.data);
       })

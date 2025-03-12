@@ -108,11 +108,11 @@ const QuizTest = (props) => {
         return;
       }
     }
-
+    
     try {
       const response = await axios.post(
         // for localhost
-        "http://localhost:4000/quiz/questions",
+        `${import.meta.env.SERVER_PORT}/quiz/questions`,
         // for production
         // it is not working cause hobby plan only gives max 5sec for API requests ( atlas )
         // it is working wrong uri

@@ -17,7 +17,8 @@ const ShowQuiz = () => {
     "Cooking",
     "GK",
   ];
-  const API = "http://localhost:4000/quiz/all";
+
+  const API = `${import.meta.env.VITE_REACT_SERVER_PORT}/quiz/all`;
 
   // Fetch Quiz Data
   useEffect(() => {
