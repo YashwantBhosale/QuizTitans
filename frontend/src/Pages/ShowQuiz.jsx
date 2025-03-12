@@ -18,7 +18,7 @@ const ShowQuiz = () => {
     "GK",
   ];
 
-  const API = `${import.meta.env.VITE_REACT_SERVER_PORT}/quiz/all`;
+  const API = `${import.meta.env.VITE_BACKEND_URL}/quiz/all`;
 
   // Fetch Quiz Data
   useEffect(() => {
