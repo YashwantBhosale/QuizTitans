@@ -29,8 +29,8 @@ const Root = () => {
           </>
         ) : (
           <>
-            <Link to="/quiz/create">Create Quiz</Link>
-            <Link to="/profile">Profile</Link>
+            <Link className="btn_nav" to="/quiz/create">Create Quiz</Link>
+            <Link className="btn_nav" to="/profile">Profile</Link>
             <button onClick={() => logout()}>Log out</button>
           </>
         )}
