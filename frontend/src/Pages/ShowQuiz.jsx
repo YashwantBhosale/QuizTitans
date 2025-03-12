@@ -25,7 +25,6 @@ const ShowQuiz = () => {
     axios
       .get(API)
       .then((res) => {
-        console.log(res.data);
         SetQuizData(res.data);
       })
       .catch((err) => {

@@ -119,7 +119,6 @@ const QuizTest = (props) => {
         // "https://quiz-titans.vercel.app/quiz/questions",
         quizData
       );
-      console.log("Quiz uploaded successfully:", response.data);
       setErrorMessage("");
     } catch (error) {
       console.error("Error uploading quiz:", error);

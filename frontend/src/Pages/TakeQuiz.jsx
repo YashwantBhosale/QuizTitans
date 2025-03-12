@@ -40,7 +40,6 @@ const TakeQuiz = () => {
 
     const formDataObject = {};
     quizData.forEach((value, key) => {
-      console.log(`${key}: ${value}`); 
       formDataObject[key] = value;
     });
 

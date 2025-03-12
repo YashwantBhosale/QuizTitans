@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 const Root = () => {
   const { loginWithRedirect } = useAuth0();
   const { user, logout } = useAuth0();
-  console.log(user);
 
   return (
     <div className={styles.main}>

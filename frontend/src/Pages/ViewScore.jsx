@@ -21,7 +21,6 @@ const ViewScore = () => {
       }
     }
     setScore(newscore);
-    console.log(newscore);
   }, []);
 
   return (
